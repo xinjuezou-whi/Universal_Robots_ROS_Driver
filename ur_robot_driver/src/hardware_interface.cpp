@@ -319,6 +319,10 @@ bool HardwareInterface::init(ros::NodeHandle& root_nh, ros::NodeHandle& robot_hw
   ur_driver_->registerTrajectoryDoneCallback(
       std::bind(&HardwareInterface::passthroughTrajectoryDoneCb, this, std::placeholders::_1));
 
+  // If no real-time kernel is used, high-load would cause unstable connection
+  // please refer to issue:https://github.com/UniversalRobots/Universal_Robots_ROS_Driver/issues/507
+  ur_driver_->setKeepaliveCount(10);
+
   // Send arbitrary script commands to this topic. Note: On e-Series the robot has to be in
   // remote-control mode.
   //
