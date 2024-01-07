@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <launch>
 
+  <arg name="robot_name" default=""/>
   <arg name="vehicle" default="L1" doc="series of combined vehicle"/>
   <arg name="vehicle_model" default="differential" doc="model of combined vehicle"/>
   <arg name="arm" default="ur" doc="ur arm"/>
@@ -36,7 +37,7 @@
   <param name="robot_description" command="$(arg urdf_file)"/>
   <!-- Convert joint states to /tf tranforms -->
   <node name="$(anon robot_state_publisher)" pkg="robot_state_publisher" type="robot_state_publisher">
-    <param name="tf_prefix" value="whi_02"/>
+    <param name="tf_prefix" value="$(arg robot_name)"/>
   </node>
 
   <include file="$(find ur_robot_driver)/launch/ur_common.launch" pass_all_args="true"/>
