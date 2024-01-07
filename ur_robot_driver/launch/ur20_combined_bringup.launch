@@ -35,7 +35,9 @@
     '$(find whi_amr_description)/urdf/NaviBOT_$(arg vehicle)_$(arg vehicle_model)_$(arg arm)_$(arg arm_model).urdf.xacro'"/>
   <param name="robot_description" command="$(arg urdf_file)"/>
   <!-- Convert joint states to /tf tranforms -->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="$(anon robot_state_publisher)" pkg="robot_state_publisher" type="robot_state_publisher">
+    <param name="tf_prefix" value="whi_02"/>
+  </node>
 
   <include file="$(find ur_robot_driver)/launch/ur_common.launch" pass_all_args="true"/>
 </launch>
