@@ -148,7 +148,7 @@ pose_based_cartesian_traj_controller:
     type: pose_controllers/CartesianTrajectoryController
 
     # UR driver convention
-    base: base
+    base: ur5e_base
     tip: tool0_controller
     joints: *robot_joints
 
@@ -156,7 +156,7 @@ joint_based_cartesian_traj_controller:
     type: position_controllers/CartesianTrajectoryController
 
     # UR driver convention
-    base: base
+    base: ur5e_base
     tip: tool0
     joints: *robot_joints
 
